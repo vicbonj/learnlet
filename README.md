@@ -55,6 +55,7 @@ plt.axis('off')
 
 plt.show()
 ```
+![Example](example/example.png)
 
 ## License
 

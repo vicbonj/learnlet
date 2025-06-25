@@ -29,7 +29,7 @@ class NormalizeByL2(nn.Module):
 
 class Learnlet(nn.Module):
     
-    def __init__(self, n_scales=5, kernel_size=5, filters=64, exact_rec=True, thresh='hard', pretrained=True):
+    def __init__(self, n_scales=5, kernel_size=5, filters=64, exact_rec=True, thresh='hard', pretrained=True, device='cpu'):
         super(Learnlet, self).__init__()
 
         self.exact_rec = exact_rec
@@ -60,7 +60,7 @@ class Learnlet(nn.Module):
         self.k_init = nn.Parameter(torch.ones(1), requires_grad=False)
         self.mininet = MiniNet(n=n_scales-1)
         if pretrained is True:
-            self.load_state_dict(torch.load('test_learnlet_64_5_True_hard_FINAL.pth'))
+            self.load_state_dict(torch.load('test_learnlet_64_5_True_hard_FINAL.pth', map_location=torch.device(device)))
 
     def forward(self, x, sigma):
 

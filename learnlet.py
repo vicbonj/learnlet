@@ -60,7 +60,7 @@ class Learnlet(nn.Module):
         self.k_init = nn.Parameter(torch.ones(1), requires_grad=False)
         self.mininet = MiniNet(n=n_scales-1)
         if pretrained is True:
-            self.load_state_dict(torch.load('weights_learnlet_{}_{}_{}_{}.pth'.format(filters, kernel_size, exact_rec, thresh), map_location=torch.device(device)))
+            self.load_state_dict(torch.load('weights/weights_learnlet_{}_{}_{}_{}.pth'.format(filters, kernel_size, exact_rec, thresh), map_location=torch.device(device)))
 
     def forward(self, x, sigma):
 

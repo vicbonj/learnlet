@@ -28,7 +28,7 @@ img_256 = transform.resize(img, (256, 256), anti_aliasing=True)
 Y = torch.from_numpy(img_as_float32(img_256))[None,None,:]
 
 #Add noise
-sigma = torch.tensor(0.05) #Noise value
+sigma = torch.tensor([0.05]) #Noise value
 noise = torch.randn(Y.shape) * sigma
 Y_noisy = Y + noise
 

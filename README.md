@@ -4,23 +4,24 @@ This code is the PyTorch implementation of the Learnlet transform originally dev
 
 The learnlets have been trained on 10,000 images from the ImageNet dataset, and the weights for the default value parameters of the network are automatically loaded when the class is instantiated. Hence the use is very straightforward and here is a small example:
 
-```
+```python
 from learnlet import Learnlet
 import torch
 from skimage import data, transform, img_as_float32
 
-#Import example image Y
-`img = data.camera()`<br/>
-`img_256 = transform.resize(img, (256, 256), anti_aliasing=True)`<br/>
-`Y = torch.from_numpy(img_as_float32(img_256))[None,None,:]`<br/><br/>
-`#Add noise`<br/>
-`sigma = torch.rand(1)*0.1 #Noise value`<br/>
-`noise = torch.randn(Y.shape) * sigma`<br/>
-`Y_noisy = Y + noise`<br/>
-<br/><br/>
-`#Apply transform to denoise`<br/>
-`learnlet = Learnlet()`<br/>
-`Y_denoised = learnlet(Y_noisy, sigma)`
+#Import an example image Y
+img = data.camera()
+img_256 = transform.resize(img, (256, 256), anti_aliasing=True)
+Y = torch.from_numpy(img_as_float32(img_256))[None,None,:]
+
+#Add noise
+sigma = torch.rand(1)*0.1 #Noise value
+noise = torch.randn(Y.shape) * sigma
+Y_noisy = Y + noise
+
+#Apply the Learnlet transform to denoise
+learnlet = Learnlet()
+Y_denoised = learnlet(Y_noisy, sigma)
 ```
 
 ## License

@@ -59,6 +59,7 @@ class Learnlet(nn.Module):
 
         self.k_init = nn.Parameter(torch.ones(1), requires_grad=False)
         self.mininet = MiniNet(n=n_scales-1)
+        self.load_state_dict(torch.load('test_learnlet_64_5_True_hard_FINAL.pth'))
 
     def forward(self, x, sigma):
 

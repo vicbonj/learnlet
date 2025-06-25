@@ -4,6 +4,13 @@ This code is the PyTorch implementation of the Learnlet transform originally dev
 
 The learnlets have been trained on 10,000 images from the ImageNet dataset, and the weights for the default value parameters of the network are automatically loaded when the class is instantiated. Hence the use is very straightforward and here is a small example:
 
+<pre>python\n
+  from learnlet import Learnlet
+  import torch
+
+  print('coucou')
+\n
+</pre>
 `from learnlet import Learnlet`<br/>
 `import torch`<br/>
 `from skimage import data, transform, img_as_float32`<br/><br/>

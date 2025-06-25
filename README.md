@@ -36,12 +36,17 @@ Y_denoised = learnlet(Y_noisy, sigma)
 
 # Visualize the results
 plt.figure(figsize=(10, 5))
-plt.subplot(1, 2, 1)
+plt.subplot(1, 3, 1)
 plt.imshow(img_256, cmap='gray', vmin=0, vmax=1)
 plt.title('Original Image')
 plt.axis('off')
 
-plt.subplot(1, 2, 2)
+plt.subplot(1, 3, 2)
+plt.imshow(Y_noisy.detach().cpu().numpy()[0][0], cmap='gray', vmin=0, vmax=1)
+plt.title('Noisy Image ($\sigma={:.2f}$)'.format(sigma.detach().cpu().numpy()[0]))
+plt.axis('off')
+
+plt.subplot(1, 3, 3)
 plt.imshow(Y_denoised.detach().cpu().numpy()[0][0], cmap='gray', vmin=0, vmax=1)
 plt.title('Denoised Image')
 plt.axis('off')

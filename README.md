@@ -1,13 +1,24 @@
-# learnlet
+# Learnlet Transform
 
-This code is the PyTorch implementation of the Learnlet transform originally developed in [Ramzi et al., 2020](https://link-to-author-profile-or-paper) and modified in Bonjean et al., 2025 (arxiv link to come soon).
+This code is the PyTorch implementation of the Learnlet transform originally developed in [Ramzi et al., 2020](https://link-to-author-profile-or-paper) and modified in Bonjean et al., 2025 (arxiv link to come soon). The learnlets have been trained on 10,000 images from the ImageNet dataset, and the weights for the default value parameters of the network are automatically loaded when the class is instantiated.
 
-The learnlets have been trained on 10,000 images from the ImageNet dataset, and the weights for the default value parameters of the network are automatically loaded when the class is instantiated. Hence the use is very straightforward and here is a small example:
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/vicbonj/learnlet.git
+cd learnlet/
+```
+## Usage
+
+Here's an example of how to use the Learnlet transform:
 
 ```python
 from learnlet import Learnlet
 import torch
 from skimage import data, transform, img_as_float32
+import matplotlib.pyplot as plt
 
 #Import an example image Y
 img = data.camera()
@@ -22,6 +33,20 @@ Y_noisy = Y + noise
 #Apply the Learnlet transform to denoise
 learnlet = Learnlet()
 Y_denoised = learnlet(Y_noisy, sigma)
+
+# Visualize the results
+plt.figure(figsize=(10, 5))
+plt.subplot(1, 2, 1)
+plt.imshow(img_256, cmap='gray')
+plt.title('Original Image')
+plt.axis('off')
+
+plt.subplot(1, 2, 2)
+plt.imshow(Y_learnlet.squeeze().cpu().numpy(), cmap='gray')
+plt.title('Learnlet Transform')
+plt.axis('off')
+
+plt.show()
 ```
 
 ## License

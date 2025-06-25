@@ -2,6 +2,8 @@
 
 This code is the PyTorch implementation of the Learnlet transform originally developed in [Ramzi et al., 2020](https://link-to-author-profile-or-paper) and modified in Bonjean et al., 2025 (arxiv link to come soon). The learnlets have been trained on 10,000 images from the ImageNet dataset, and the weights for the default value parameters of the network are automatically loaded when the class is instantiated.
 
+If you use this code, please cite both papers in your work.
+
 ## Installation
 
 Clone the repository:

@@ -1,0 +1,7 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*.py~
+
+# Editor/OS artifacts
+.DS_Store

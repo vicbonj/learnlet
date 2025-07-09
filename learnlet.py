@@ -60,7 +60,11 @@ class Learnlet(nn.Module):
         self.k_init = nn.Parameter(torch.ones(1), requires_grad=False)
         self.mininet = MiniNet(n=n_scales-1)
         if pretrained is True:
-            self.load_state_dict(torch.load('weights/weights_learnlet_{}_{}_{}_{}.pth'.format(filters, kernel_size, exact_rec, thresh), map_location=torch.device(device)))
+            try:
+                self.load_state_dict(torch.load('weights/weights_learnlet_{}_{}_{}_{}.pth'.format(filters, kernel_size, exact_rec, thresh), map_location=torch.device(device)))
+                print(f"[info] Found pretrained weights for this configuration of parameters.")
+            except (FileNotFoundError, RuntimeError):
+                print(f"[info] Couldn’t load weights for this configuration of parameters; continuing with random init.")
 
     def forward(self, x, sigma):
 

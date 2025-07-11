@@ -28,7 +28,7 @@ img_256 = transform.resize(img, (256, 256), anti_aliasing=True)
 Y = torch.from_numpy(img_as_float32(img_256))[None,None,:]
 
 #Add noise
-sigma = torch.tensor([0.05]) #Noise value
+sigma = 0.05 #Noise value
 noise = torch.randn(Y.shape) * sigma
 Y_noisy = Y + noise
 
@@ -45,7 +45,7 @@ plt.axis('off')
 
 plt.subplot(1, 3, 2)
 plt.imshow(Y_noisy.detach().cpu().numpy()[0][0], cmap='gray', vmin=0, vmax=1)
-plt.title('Noisy Image ($\sigma={:.2f}$)'.format(sigma.detach().cpu().numpy()[0]))
+plt.title('Noisy Image ($\sigma={:.2f}$)'.format(sigma))
 plt.axis('off')
 
 plt.subplot(1, 3, 3)

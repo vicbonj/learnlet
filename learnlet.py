@@ -81,16 +81,20 @@ class Learnlet(nn.Module):
             x = x_new
             
             x_a = self.convs_A[i](x_in)
-
+            
             if self.exact_rec is True:
                 x_a = torch.cat([x_in, x_a], dim=1)
-
+            
             thresh = thresholds[i] * sigma
 
+            expand_dims = x_a.dim() - thresh.dim()
+            new_shape = thresh.shape + (1,) * expand_dims
+            thresh_expanded = thresh.view(new_shape)
+            
             if self.thresh == 'hard':
-                x_a_t = x_a * torch.sigmoid((torch.abs(x_a) - thresh[:,None,None]) / 1e-3)
+                x_a_t = x_a * torch.sigmoid((torch.abs(x_a) - thresh_expanded) / 1e-3)
             elif self.thresh == 'soft':
-                x_a_t = torch.sign(x_a) * torch.relu(torch.abs(x_a) - thresh[:,None,None])
+                x_a_t = torch.sign(x_a) * torch.relu(torch.abs(x_a) - thresh_expanded)
             else:
                 print('Not implemented thresholding')
 

@@ -50,7 +50,7 @@ class Learnlet(nn.Module):
             #filt = int(filters/2**i)
             self.convs_A.append(nn.Conv2d(1, filt, kernel_size, bias=False, padding=pad*2**i, dilation=2**i, padding_mode='reflect'))
             if exact_rec is True:
-                last_filt = int(filters/2**i)
+                last_filt = filters#int(filters/2**i)
             else:
                 last_filt = 1
             self.convs_S.append(nn.Conv2d(filt, last_filt, kernel_size, bias=False, padding=pad*2**i, dilation=2**i, padding_mode='reflect', groups=last_filt))

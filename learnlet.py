@@ -69,7 +69,7 @@ class Learnlet(nn.Module):
             except (FileNotFoundError, RuntimeError):
                 print(f"[info] Couldn’t load weights for this configuration of parameters; continuing with random init.")
 
-    def forward(self, x, sigma):
+    def forward(self, x, sigma, no_coarse=False):
 
         thresholds = self.mininet(self.k_init) * 5
 
@@ -114,7 +114,8 @@ class Learnlet(nn.Module):
                 x_s = self.convs_S[i](x_a_t)
             wt.append(x_s)
 
-        wt.append(x_new)
+        if no_coarse is False:
+            wt.append(x_new)
         
         rec = torch.cat(wt, dim=1).sum(dim=1, keepdim=True)
         return rec

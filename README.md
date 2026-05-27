@@ -17,7 +17,7 @@ cd learnlet/
 Here's an example of how to use the Learnlet transform:
 
 ```python
-from learnlet import Learnlet
+from learnlet.learnlet import Learnlet
 import torch
 from skimage import data, transform, img_as_float32
 import matplotlib.pyplot as plt

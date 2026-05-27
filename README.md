@@ -43,7 +43,8 @@ Y_noisy = Y + noise
 learnlet = Learnlet().to(device)
 learnlet.load_state_dict(torch.load('weights/LEARNLET_FINAL_64_5_sc5_True_hard.pth', map_location=device, weights_only=True))
 learnlet.eval()
-Y_denoised = learnlet(Y_noisy, sigma)
+with torch.no_grad():
+    Y_denoised = learnlet(Y_noisy, sigma)
 
 # Visualize the results
 plt.figure(figsize=(10, 5))

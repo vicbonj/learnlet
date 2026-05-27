@@ -63,7 +63,7 @@ class Learnlet(nn.Module):
         if pretrained is True:
             try:
                 current_dir = os.path.dirname(os.path.abspath(__file__))
-                weights_path = os.path.join(current_dir, 'weights', 'weights_learnlet_{}_{}_{}_{}.pth'.format(filters, kernel_size, exact_rec, thresh))
+                weights_path = os.path.join(current_dir, 'weights', 'LEARNLET_FINAL_{}_{}_sc{}_{}_{}.pth'.format(filters, kernel_size, n_scales, exact_rec, thresh))
                 self.load_state_dict(torch.load(weights_path, map_location=torch.device(device), weights_only=True))
                 print(f"[info] Found pretrained weights for this configuration of parameters.")
             except (FileNotFoundError, RuntimeError):

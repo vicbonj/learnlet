@@ -24,9 +24,9 @@ import matplotlib.pyplot as plt
 
 
 device = torch.device(
-    "mps" if torch.backends.mps.is_available()
-    elif "cuda" if torch.cuda.is_available()
-    else "cpu"
+    "mps" if torch.backends.mps.is_available() else
+    "cuda" if torch.cuda.is_available() else
+    "cpu"
 )
 
 #Import an example image Y
